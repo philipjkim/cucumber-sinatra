@@ -1,7 +1,12 @@
+require 'sinatra'
+
+app_file = File.join(File.dirname(__FILE__), %w[.. .. hello.rb])
+require app_file
+Sinatra::Application.app_file = app_file
+
 require 'rspec/expectations'
 require 'webrat'
 require 'rack/test'
-require 'sinatra'
 
 Webrat.configure do |config|
   config.mode = :rack
