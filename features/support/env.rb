@@ -1,9 +1,22 @@
 require 'rspec/expectations'
-require 'rspec/interop/test'
-require 'sinatra/test'
+require 'webrat'
+require 'rack/test'
+require 'sinatra'
 
-Test::Unit::TestCase.send :include, Sinatra::Test
-
-World do
-  Sinatra::TestHarness.new(Sinatra::Application)
+Webrat.configure do |config|
+  config.mode = :rack
 end
+
+class MyWorld
+  include Rack::Test::Methods
+  include Webrat::Methods
+  include Webrat::Matchers
+  
+  Webrat::Methods.delegate_to_session :response_code, :response_body
+
+  def app
+    Sinatra::Application
+  end
+end
+
+World{MyWorld.new}
