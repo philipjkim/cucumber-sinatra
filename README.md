@@ -5,3 +5,5 @@
 - http://japhr.blogspot.kr/2010/02/two-steps-back.html
 
 - https://github.com/cucumber/cucumber/wiki/Sinatra
+
+- https://github.com/bernd/cucumber-sinatra
